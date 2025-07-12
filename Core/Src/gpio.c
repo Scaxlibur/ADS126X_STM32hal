@@ -45,24 +45,42 @@ void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(ADS1263_CS_GPIO_Port, ADS1263_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, CS_Pin|SCLK_Pin|MOSI_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : ADS126x_DRDY_Pin */
-  GPIO_InitStruct.Pin = ADS126x_DRDY_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(ADS126x_DRDY_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, ads1263_start_Pin|ads1263_rst_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : ADS1263_CS_Pin */
-  GPIO_InitStruct.Pin = ADS1263_CS_Pin;
+  /*Configure GPIO pins : CS_Pin SCLK_Pin MOSI_Pin */
+  GPIO_InitStruct.Pin = CS_Pin|SCLK_Pin|MOSI_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  HAL_GPIO_Init(ADS1263_CS_GPIO_Port, &GPIO_InitStruct);
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : MISO_Pin */
+  GPIO_InitStruct.Pin = MISO_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(MISO_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : ads1263_start_Pin ads1263_rst_Pin */
+  GPIO_InitStruct.Pin = ads1263_start_Pin|ads1263_rst_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ads1263_drdy_Pin */
+  GPIO_InitStruct.Pin = ads1263_drdy_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(ads1263_drdy_GPIO_Port, &GPIO_InitStruct);
 
 }
 

@@ -57,10 +57,20 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define ADS126x_DRDY_Pin GPIO_PIN_11
-#define ADS126x_DRDY_GPIO_Port GPIOA
-#define ADS1263_CS_Pin GPIO_PIN_12
-#define ADS1263_CS_GPIO_Port GPIOA
+#define CS_Pin GPIO_PIN_4
+#define CS_GPIO_Port GPIOA
+#define SCLK_Pin GPIO_PIN_5
+#define SCLK_GPIO_Port GPIOA
+#define MISO_Pin GPIO_PIN_6
+#define MISO_GPIO_Port GPIOA
+#define MOSI_Pin GPIO_PIN_7
+#define MOSI_GPIO_Port GPIOA
+#define ads1263_start_Pin GPIO_PIN_3
+#define ads1263_start_GPIO_Port GPIOB
+#define ads1263_rst_Pin GPIO_PIN_5
+#define ads1263_rst_GPIO_Port GPIOB
+#define ads1263_drdy_Pin GPIO_PIN_6
+#define ads1263_drdy_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
